@@ -1,0 +1,34 @@
+
+
+.logo{
+    /* width: 48px; */
+    height: 26px;
+}
+
+
+article {
+	display: flex;
+
+	padding-top: 24px;
+	margin: 0 auto;
+
+}
+
+.thumb {
+	height: 112px;
+    margin-right: 8px;
+    border-radius: 8px;
+}
+
+#main-details {
+    padding-top: 8px;
+}
+
+.details {
+
+}
+
+.videos {
+    max-height: 400px;
+    overflow-y: scroll;
+}
