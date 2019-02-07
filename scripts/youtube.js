@@ -71,15 +71,19 @@ $(document).ready(function () {
             var vid = item.snippet.resourceId.videoId;
 
             $('main').append(`
-							<article class="item" data-key="${i}"">
 
-								<img src="${thumb}" alt="" class="thumb">
-								<div class="details">
-									<h5>${title}</h5>
-									<p>${desc}</p>
-								</div>
+                    <a href="#main">
+                        <article class="item" data-key="${i}"">
 
-							</article>
+                            <img src="${thumb}" alt="" class="thumb">
+                            <div class="details">
+                                <h5>${title}</h5>
+                                <p>${desc}</p>
+                            </div>
+
+                        </article>
+                    </a>
+
 						`);
         });
     }
