@@ -48,13 +48,17 @@ $(document).ready(function () {
         var desc = item.snippet.description;
         var channel = item.snippet.channelTitle;
 
-        $('#video').html(`
-                    <h5><a href='https://www.youtube.com/channel/UCpXk1xmGVM_o4_UJ_SPHiDA'>${channel}</a></h5>
+        $('.iframe-container').html(`
+
 					<iframe width="560" height="315" src="https://www.youtube.com/embed/${id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                    <div id="main-details">
-                        <h5>${title}</h5>
-                        <p>${desc}</p>
+
 				`);
+        $('.details').html(`
+            <div id="main-details">
+                <h5>${title}</h5>
+                <p>${desc}</p>
+
+            `)
     }
 
 
