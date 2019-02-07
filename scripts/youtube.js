@@ -27,22 +27,20 @@ $(document).ready(function () {
         playlistId: playlistId
     }
 
-    loadVids();
+    loadVids(0);
 
-    function loadVids() {
+    function loadVids(i) {
         $.getJSON(URL, options, function (data) {
-            var array = data.items
-            console.log("REVERSED DATA:", array.reverse())
 
-            items = array;
-            console.log("ITEMS:", items);
-            var item  = data.items[0]
+            items = data.items.reverse()
+            var item  = items[i]
             mainVid(item);
-            resultsLoop(data);
+            resultsLoop(items);
         });
     }
 
     function mainVid(item) {
+        console.log(items)
         var id = item.snippet.resourceId.videoId;
         var title = item.snippet.title;
         var desc = item.snippet.description;
@@ -62,10 +60,11 @@ $(document).ready(function () {
     }
 
 
-    function resultsLoop(data) {
+    function resultsLoop(items) {
 
+        $('main').html(``)
 
-        $.each(data.items, function (i, item) {
+        $.each(items, function (i, item) {
             var thumb = item.snippet.thumbnails.high.url;
             var title = item.snippet.title;
             var desc = item.snippet.description.substring(0, 100);
@@ -87,8 +86,8 @@ $(document).ready(function () {
 
 		// CLICK EVENT
     $('main').on('click', 'article', function () {
-        var item = $(this).attr('data-key');
-        mainVid(items[item]);
+        var i = $(this).attr('data-key');
+        loadVids(i);
     });
 
 
