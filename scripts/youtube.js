@@ -50,7 +50,7 @@ $(document).ready(function () {
 
         $('.iframe-container').html(`
 
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/${id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					<iframe width="360" height="210" src="https://www.youtube.com/embed/${id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 				`);
         $('.details').html(`
