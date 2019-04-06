@@ -32,7 +32,7 @@ $(document).ready(function () {
         $.getJSON(URL, options, function (data) {
             var array = data.items
 
-            console.log("REVERSED DATA:", array.reverse())
+            // console.log("REVERSED DATA:", array.reverse())
             mainVid(data);
             resultsLoop(data);
         });
