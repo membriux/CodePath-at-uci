@@ -6,6 +6,14 @@
 }
 
 
+article:hover {
+    background-color: yellow;
+}
+
+article:active {
+    background-color: yellow;
+}
+
 article {
 	display: flex;
 

@@ -18,6 +18,7 @@ $(document).ready(function () {
     var playlistId = 'PLxngEA2kBJ2DWmzCObDPS4stRuy32_PeJ';
     var URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
 
+    var items = [];
 
     var options = {
         part: 'snippet',
@@ -26,24 +27,24 @@ $(document).ready(function () {
         playlistId: playlistId
     }
 
-    loadVids();
+    loadVids(6);
 
-    function loadVids() {
+    function loadVids(i) {
         $.getJSON(URL, options, function (data) {
-            var array = data.items
 
-            // console.log("REVERSED DATA:", array.reverse())
-            mainVid(data);
-            resultsLoop(data);
+            items = data.items
+            var item  = items[i]
+            mainVid(item);
+            resultsLoop(items);
         });
     }
 
-    function mainVid(data) {
-        var item = data.items[0]
+    function mainVid(item) {
         var id = item.snippet.resourceId.videoId;
         var title = item.snippet.title;
-        var desc = item.snippet.description;
+        var desc = item.snippet.description.substring(0,450) + "...";
         var channel = item.snippet.channelTitle;
+
 
         $('#video').html(`
                     <h5><a href='https://www.youtube.com/channel/UCpXk1xmGVM_o4_UJ_SPHiDA'>${channel}</a></h5>
@@ -55,35 +56,38 @@ $(document).ready(function () {
     }
 
 
-    function resultsLoop(data) {
+    function resultsLoop(items) {
 
+        $('main').html(``)
 
-        $.each(data.items, function (i, item) {
-
+        $.each(items, function (i, item) {
             var thumb = item.snippet.thumbnails.high.url;
             var title = item.snippet.title;
             var desc = item.snippet.description.substring(0, 100);
             var vid = item.snippet.resourceId.videoId;
 
-
             $('main').append(`
-							<article class="item" data-key="${vid}">
 
-								<img src="${thumb}" alt="" class="thumb">
-								<div class="details">
-									<h5>${title}</h5>
-									<p>${desc}</p>
-								</div>
+                    <a href="#main">
+                        <article class="item" data-key="${i}"">
 
-							</article>
+                            <img src="${thumb}" alt="" class="thumb">
+                            <div class="details">
+                                <h5>${title}</h5>
+                                <p>${desc}</p>
+                            </div>
+
+                        </article>
+                    </a>
+
 						`);
         });
     }
 
 		// CLICK EVENT
     $('main').on('click', 'article', function () {
-        var id = $(this).attr('data-key');
-        mainVid(id);
+        var i = $(this).attr('data-key');
+        loadVids(i);
     });
 
 
